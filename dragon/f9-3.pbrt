@@ -1,0 +1,51 @@
+
+Film "image" "integer xresolution" [900] "integer yresolution" [900]
+  "string filename" "f9-3.exr"
+
+Sampler "halton" "integer pixelsamples" [8]
+Sampler "halton" "integer pixelsamples" [32]
+Sampler "halton" "integer pixelsamples" [1024]
+
+Integrator "path" "integer maxdepth" 20
+#Integrator "bdpt" "integer maxdepth" 10
+#Integrator "mlt" "integer mutationsperpixel" 1024 "integer maxdepth" 9
+#Integrator "sppm" "integer numiterations" [128] "float radius" [5]
+
+#LookAt 400 -400 400  0 80 -50 0 0 1
+LookAt 277 -240 250  0 60 -30 0 0 1
+Camera "perspective" "float fov" [33]
+
+WorldBegin
+
+AttributeBegin
+Rotate 90 0 0 1
+Rotate -90 1 0 0
+LightSource "infinite" "string mapname"
+    "textures/20060807_wells6_hd.exr"   "color scale" [2.5 2.5 2.5]
+AttributeEnd
+
+AttributeBegin
+#Material "matte" "color Kd" [.7 .7 .7]
+#Material "mirror" "color Kr" [ .7 .7 .7 ]
+Texture "lines" "color" "imagemap" "string filename" "textures/lines.exr"
+Material "plastic"
+ "color Kd" [.1 .1 .1]
+# "texture Kd" "lines"
+  "color Ks" [.7 .7 .7] "float roughness" .1
+#Material "mirror"
+Translate 0 0 -40
+Shape "trianglemesh"
+   "point P" [ -1000 -1000 0   1000 -1000 0   1000 1000 0 -1000 1000 0 ]
+   "float uv" [ 0 0 1 0 1 1 0 1 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+AttributeBegin
+Rotate -53 0 1 0
+ReverseOrientation
+Material "plastic" "color Kd" [.1 .1 .4] "float roughness" [.03]
+  "color Ks" [.6 .6 .6]
+Shape "plymesh" "string filename" "geometry/dragon_remeshed.ply"
+AttributeEnd
+
+WorldEnd
