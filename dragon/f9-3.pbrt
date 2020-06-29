@@ -42,7 +42,6 @@ AttributeEnd
 
 AttributeBegin
 Rotate -53 0 1 0
-ReverseOrientation
 Material "plastic" "color Kd" [.1 .1 .4] "float roughness" [.03]
   "color Ks" [.6 .6 .6]
 Shape "plymesh" "string filename" "geometry/dragon_remeshed.ply"
